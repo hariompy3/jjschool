@@ -1,0 +1,15 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <title>My Subjects</title>
+</head>
+<body>
+    <h2>My Subjects</h2>
+    <ul>
+        {% for teacher_subject in teacher_subjects %}
+            <li>{{ teacher_subject.subject.name }} ({{ teacher_subject.subject.grade.name }})</li>
+        {% endfor %}
+    </ul>
+    <a href="{% url 'assign_subjects' %}">Assign Subjects</a>
+</body>
+</html>
