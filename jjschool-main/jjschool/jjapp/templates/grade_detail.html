@@ -1,0 +1,19 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <title>Grade Details</title>
+</head>
+<body>
+    <h1>Grade: {{ grade.name }} (Level {{ grade.level }})</h1>
+    <p>{{ grade.description }}</p>
+
+    <h2>Subjects</h2>
+    <ul>
+        {% for subject in subjects %}
+        <li>{{ subject.name }}</li>
+        {% empty %}
+        <li>No subjects assigned yet.</li>
+        {% endfor %}
+    </ul>
+</body>
+</html>

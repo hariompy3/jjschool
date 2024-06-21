@@ -1,0 +1,108 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Student Management</title>
+    <style>
+        /* Add your CSS styles here */
+        body {
+            font-family: Arial, sans-serif;
+            background-color: #f4f4f4;
+            margin: 0;
+            padding: 0;
+        }
+
+        header {
+            background-color: #333;
+            color: #fff;
+            padding: 10px;
+            text-align: center;
+        }
+
+        table {
+            width: 100%;
+            margin: 20px 0;
+            border-collapse: collapse;
+        }
+
+        table, th, td {
+            border: 1px solid #ddd;
+        }
+
+        th, td {
+            padding: 10px;
+            text-align: left;
+        }
+
+        th {
+            background-color: #f2f2f2;
+        }
+
+        .btn {
+            display: inline-block;
+            padding: 10px 15px;
+            margin: 10px 0;
+            font-size: 16px;
+            cursor: pointer;
+            text-align: center;
+            text-decoration: none;
+            outline: none;
+            color: #fff;
+            background-color: #333;
+            border: none;
+            border-radius: 5px;
+        }
+
+        .btn:hover {
+            background-color: #555;
+        }
+
+        .actions {
+            display: flex;
+            gap: 10px;
+        }
+    </style>
+</head>
+<body>
+    <header>
+        <h1>Student Management</h1>
+    </header>
+    <section>
+        <a href="{% url 'add_student' %}" class="btn">Add Student</a>
+        <a href="{% url 'deleted_students' %}" class="btn">View Deleted Students</a>
+        <table>
+            <thead>
+                <tr>
+                    <th>Name</th>
+                    <th>Date of Birth</th>
+                    <th>Admission Date</th>
+                    <th>Grade</th>
+                    <th>Total Fee</th>
+                    <th>Remaining Fee</th>
+                    <th>Attendance (%)</th>
+                    <th>Actions</th>
+                </tr>
+            </thead>
+            <tbody>
+                {% for student in students %}
+                    <tr>
+                        <td>{{ student.first_name }} {{ student.last_name }}</td>
+                        <td>{{ student.date_of_birth }}</td>
+                        <td>{{ student.admission_date }}</td>
+                        <td>{{ student.grade }}</td>
+                        <td>{{ student.total_fee }}</td>
+                        <td>{{ student.remaining_fee }}</td>
+                        <td>{{ student.attendance_percentage }}</td>
+                        <td class="actions">
+                            <a href="{% url 'edit_student' student.user.id %}" class="btn">Edit</a>
+                            <a href="{% url 'soft_delete_student' student.user.id %}" class="btn">Delete</a>
+                            <a href="{% url 'student_profile' student.user.id %}" class="profile-button">Profile</a>
+                        </td>
+                    </tr>
+                {% endfor %}
+            </tbody>
+        </table>
+    </section>
+</body>
+</html>

@@ -1,0 +1,176 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Principal Dashboard</title>
+    <link rel="stylesheet" href="https://fonts.googleapis.com/icon?family=Material+Icons">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/materialize/1.0.0/css/materialize.min.css">
+    <style>
+        body {
+            font-family: 'Roboto', sans-serif;
+            background-color: #f5f5f5;
+            color: #333;
+        }
+
+        .navbar {
+            background-color: #212121;
+            box-shadow: 0 2px 5px rgba(0, 0, 0, 0.1);
+        }
+
+        .brand-logo {
+            margin-left: 20px;
+            color: #fff;
+        }
+
+        .container {
+            margin-top: 40px;
+        }
+
+        .card {
+            box-shadow: 0 2px 5px rgba(0, 0, 0, 0.1);
+            background-color: #fff;
+        }
+
+        .card-content {
+            padding: 24px;
+        }
+
+        .card-title {
+            margin-bottom: 20px;
+            color: #212121;
+        }
+
+        .btn {
+            margin-right: 10px;
+            background-color: #212121;
+            color: #fff;
+        }
+
+        .btn:hover {
+            background-color: #424242;
+        }
+
+        .attendance-form {
+            margin-top: 40px;
+        }
+
+        .slider {
+            margin-top: 40px;
+        }
+
+        .slider .slides li img {
+            height: 400px;
+            object-fit: cover;
+        }
+
+        .slider .indicators .indicator-item {
+            background-color: #212121;
+        }
+    </style>
+</head>
+<body>
+    <nav class="navbar">
+        <div class="nav-wrapper">
+            <a href="#" class="brand-logo">Principal Dashboard</a>
+            <ul id="nav-mobile" class="right hide-on-med-and-down">
+                <li><a href="{% url 'logout' %}">Logout</a></li>
+            </ul>
+        </div>
+    </nav>
+
+    <div class="container">
+        <div class="row">
+            <div class="col s12 m6">
+                <div class="card">
+                    <div class="card-content">
+                        <span class="card-title">Actions</span>
+                        <a class="waves-effect waves-light btn" href="{% url 'manage_notifications' %}">
+                            <i class="material-icons left">notifications</i>
+                            Manage Notifications
+                        </a>
+                        <a class="waves-effect waves-light btn" href="{% url 'list_students' %}">
+                            <i class="material-icons left">people</i>
+                            Manage Students
+                        </a>
+                        <a class="waves-effect waves-light btn" href="{% url 'add_teacher' %}">
+                            <i class="material-icons left">person_add</i>
+                            Add Teacher
+                        </a>
+                        </a>
+                        <a class="waves-effect waves-light btn" href="{% url 'list_grades' %}">
+                            <i class="material-icons left">person_add</i>
+                            List Grade
+                        </a>
+                        </a>
+                        <a class="waves-effect waves-light btn" href="{% url 'list_teachers' %}">
+                            <i class="material-icons left">person_add</i>
+                            List teacher
+                        </a>
+                        <a class="waves-effect waves-light btn" href="{% url 'complaint_list' %}">
+                            <i class="material-icons left">person_add</i>
+                            complain
+                        </a>
+                        
+                    </div>
+                </div>
+            </div>
+            <div class="col s12 m6">
+                <div class="card attendance-form">
+                    <div class="card-content">
+                        <span class="card-title">Record Attendance</span>
+                        <form method="post">
+                            {% csrf_token %}
+                            <!-- Assuming you have a form instance named 'form' passed from the view -->
+                            {{ form.as_p }}
+                            <button type="submit" class="waves-effect waves-light btn">Submit</button>
+                        </form>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <div class="slider">
+            <ul class="slides">
+                <li>
+                    <img src="https://via.placeholder.com/800x400?text=Slide+1">
+                    <div class="caption center-align">
+                        <h3>Slide 1 Heading</h3>
+                        <h5 class="light grey-text text-lighten-3">Slide 1 Caption</h5>
+                    </div>
+                </li>
+                <li>
+                    <img src="https://via.placeholder.com/800x400?text=Slide+2">
+                    <div class="caption left-align">
+                        <h3>Slide 2 Heading</h3>
+                        <h5 class="light grey-text text-lighten-3">Slide 2 Caption</h5>
+                    </div>
+                </li>
+                <li>
+                    <img src="https://via.placeholder.com/800x400?text=Slide+3">
+                    <div class="caption right-align">
+                        <h3>Slide 3 Heading</h3>
+                        <h5 class="light grey-text text-lighten-3">Slide 3 Caption</h5>
+                    </div>
+                </li>
+            </ul>
+        </div>
+    </div>
+
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/materialize/1.0.0/js/materialize.min.js"></script>
+    <script>
+        document.addEventListener('DOMContentLoaded', function() {
+            var elems = document.querySelectorAll('.slider');
+            var instances = M.Slider.init(elems, {
+                indicators: true,
+                height: 400,
+                transition: 500,
+                interval: 6000
+            });
+        });
+    </script>
+</body>
+</html>
+
+
+

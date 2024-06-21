@@ -1,0 +1,15 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <title>Class Subjects</title>
+</head>
+<body>
+    <h2>Subjects for {{ grade.name }}</h2>
+    <ul>
+        {% for subject in subjects %}
+            <li>{{ subject.name }}</li>
+        {% endfor %}
+    </ul>
+    <a href="{% url 'add_class_subjects' grade.id %}">Add/Edit Subjects</a>
+</body>
+</html>
